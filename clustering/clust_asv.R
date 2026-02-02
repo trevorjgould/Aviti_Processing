@@ -37,5 +37,5 @@ getalignrow <- function(x){
 }
 i = as.numeric(args[2])
 alignlist <- getalignrow(i)
-
-write.table(alignlist, "templistout.txt", append=TRUE, row.names = FALSE, col.names = FALSE)
+filename1 = paste0(args[1],"_templistout.txt")
+write.table(alignlist, filename1, append=TRUE, row.names = FALSE, col.names = FALSE)

@@ -13,23 +13,8 @@ for(thisName in allNames){
     saveRDS(t(df_list_no_id[[thisName]]), file = saveName)
 }
 
-files <- list.files(".")
+files <- list.files(pattern = "RDS")
 for (i in files){
 comlist <- paste0("Rscript /users/4/goul0109/Aviti_Documents/clustering/build_command_list.R ",i," 4")
 lapply(comlist, write, "build_run_commands.cmd", append=TRUE)
-}
-
-#Rscript build_command_list.R seqtab_nochim.rds [integer errors allowed]
-args = commandArgs(trailingOnly=TRUE)
-ASVtab <- readRDS("seqtab.rds")
-#ASVtab <- readRDS(args[1])
-ASVtab = as.data.frame(t(ASVtab))
-endnum = nrow(ASVtab)-1
-# set default number of errors allowed
-wrong = 4
-#wrong = as.numeric(args[2])
-for (i in (1:endnum)){
-comlist <- paste0("Rscript /users/4/goul0109/dada2processing/clust_asv.R seqtab.rds ",i," ",wrong)
-#comlist <- paste0("Rscript /users/4/goul0109/dada2processing/clust_asv.R ",args[1]," ",i," ",wrong)
-lapply(comlist, write, "runcommands.cmd", append=TRUE)
 }
