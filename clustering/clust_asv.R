@@ -10,22 +10,23 @@ wrong = as.numeric(args[3])
 mat <- pwalign::nucleotideSubstitutionMatrix(match = 1, mismatch = -3, baseOnly = TRUE)
 # function for the parallel loop
 getalignrow <- function(x){
-  ref_seq = row.names(ASVtab[x,])
+  seqs <- row.names(ASVtab)
+  ref_seq = seqs[x]
   start = x+1
-  query <- row.names(ASVtab[start:nrow(ASVtab),])
+  query <- row.names(ASVtab[start:nrow(ASVtab),,drop=FALSE])
   #out <- pairwiseAlignment(query, ref_seq, substitutionMatrix = mat, type = "global", gapOpening = 5, gapExtension = 2, scoreOnly=TRUE)
   out <- pwalign::pairwiseAlignment(query, ref_seq, substitutionMatrix = mat, type = "global", gapOpening = 5, gapExtension = 2, scoreOnly=TRUE)
   subASV = ASVtab
   subASV$score = 0
   subASV[start:nrow(ASVtab),]$score = out
 
-  max_score = nchar(row.names(ASVtab[1,]))
-  min_score = nchar(row.names(ASVtab[1,])) - (4 * wrong)
+  max_score = nchar(row.names(ASVtab[1,,drop=FALSE]))
+  min_score = nchar(row.names(ASVtab[1,,drop=FALSE])) - (4 * wrong)
   
   subASV$rownumber =1:nrow(subASV)
   
   subASV = subset(subASV, subASV$score >= min_score)
-  c <- row.names(subASV[1])
+  c <- row.names(subASV[1,])
   d=wrong+1
   d <- stringdist::stringdist(ref_seq, c, method = "lv")
   print(x)
