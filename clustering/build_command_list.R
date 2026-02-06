@@ -15,7 +15,7 @@ for(thisName in allNames){
 
 files <- list.files(".")
 for (i in files){
-comlist <- paste0("Rscript /users/4/goul0109/Aviti_Documents/clustering/build_command_list.R ",i," 4")
+comlist <- paste0("Rscript /Aviti_Documents/clustering/build_command_list.R ",i," 4")
 lapply(comlist, write, "build_run_commands.cmd", append=TRUE)
 }
 
@@ -29,7 +29,7 @@ endnum = nrow(ASVtab)-1
 wrong = 4
 #wrong = as.numeric(args[2])
 for (i in (1:endnum)){
-comlist <- paste0("Rscript /users/4/goul0109/dada2processing/clust_asv.R seqtab.rds ",i," ",wrong)
-#comlist <- paste0("Rscript /users/4/goul0109/dada2processing/clust_asv.R ",args[1]," ",i," ",wrong)
+comlist <- paste0("Rscript clust_asv.R seqtab.rds ",i," ",wrong)
+#comlist <- paste0("Rscript clust_asv.R ",args[1]," ",i," ",wrong)
 lapply(comlist, write, "runcommands.cmd", append=TRUE)
 }

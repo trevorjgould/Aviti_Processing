@@ -4,12 +4,12 @@
 Processing of Aviti data for this publication starts 
 with a seqtab.rds table typically output from DADA2
 
-This will likely only work on a decent sized supercomputer node as it takes advantage of 
+This will likely only work on a decent sized cluster node as it takes advantage of 
 parallelization modules. 
 
 run_clustering_multiple.sh 
 or 
-run_clustering_single.sh
+run_clustering.sh (single)
 
 are the shell script for calling the rest of the pileline. 
 multiple breaks up larger ASV tables (500,000 unique ASVs) 

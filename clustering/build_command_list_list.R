@@ -15,6 +15,6 @@ for(thisName in allNames){
 
 files <- list.files(pattern = "RDS")
 for (i in files){
-comlist <- paste0("Rscript /users/4/goul0109/Aviti_Documents/clustering/build_command_list.R ",i," 4")
+comlist <- paste0("Rscript build_command_list.R ",i," 4")
 lapply(comlist, write, "build_run_commands.cmd", append=TRUE)
 }

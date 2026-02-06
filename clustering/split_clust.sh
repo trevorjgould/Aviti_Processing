@@ -3,11 +3,9 @@
 #SBATCH --ntasks=128
 #SBATCH --mem=100gb
 #SBATCH --tmp=300gb
-#SBATCH --account=umii
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=goul0109@umn.edu
 
-cd /scratch.global/goul0109/Kantarci/dada2output/split_tabs/
+cd directory
 module load R/4.4.0-openblas-rocky8
 module load parallel
 
