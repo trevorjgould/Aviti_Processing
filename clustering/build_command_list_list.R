@@ -1,9 +1,11 @@
+args = commandArgs(trailingOnly=TRUE)
 seqtab <- readRDS("seqtab.rds")
 seqtab = t(seqtab)
 sequences <- rownames(seqtab)
 sequences <- as.data.frame(1:nrow(seqtab))
 rownames(sequences) <- rownames(seqtab)
-sequences$Group = sample(10, size = nrow(sequences), replace = TRUE)
+groupings = as.numeric(args[1])
+sequences$Group = sample(groupings, size = nrow(sequences), replace = TRUE)
 tablist <- split(sequences, sequences$Group)
 
 df_list_no_id <- lapply(tablist, subset, select = -Group)
@@ -15,6 +17,6 @@ for(thisName in allNames){
 
 files <- list.files(pattern = "RDS")
 for (i in files){
-comlist <- paste0("Rscript build_command_list.R ",i," 4")
+comlist <- paste0("Rscript /users/4/goul0109/Aviti_Documents/clustering/build_command_list.R ",i," 4")
 lapply(comlist, write, "build_run_commands.cmd", append=TRUE)
 }
